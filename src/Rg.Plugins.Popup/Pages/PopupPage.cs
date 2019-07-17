@@ -11,14 +11,60 @@ namespace Rg.Plugins.Popup.Pages
     {
         #region Internal Properties
 
-        public bool IsBeingAppear { get; set; }
-        public bool IsBeingDismissed { get; set; }
+        private bool isBeingDismissed;
+        private bool isBeingAppear;
+
+        public bool IsBeingAppear
+        {
+            get => isBeingAppear;
+            set
+            {
+                if (isBeingAppear != value)
+                {
+                    isBeingAppear = value;
+                    if (value)
+                    {
+                        OnAppear();
+                    }
+                }
+            }
+        }        
+
+        public bool IsBeingDismissed
+        {
+            get => isBeingDismissed;
+            set
+            {
+                if (isBeingDismissed != value)
+                {
+                    isBeingDismissed = value;
+                    if (value)
+                    {
+                        OnDismissed();
+                    }
+                }
+            }
+        }
+
+        protected virtual void OnAppear()
+        {
+            Appear?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnDismissed()
+        {
+            Dismissed?.Invoke(this, EventArgs.Empty);
+        }
 
         #endregion
 
         #region Events
 
         public event EventHandler BackgroundClicked;
+
+        public event EventHandler Dismissed;
+
+        public event EventHandler Appear;
 
         #endregion
 
@@ -90,7 +136,7 @@ namespace Rg.Plugins.Popup.Pages
             {
                 case nameof(HasSystemPadding):
                     ForceLayout();
-                    break;               
+                    break;
             }
         }
 
@@ -230,7 +276,7 @@ namespace Rg.Plugins.Popup.Pages
             var systemPaddingWasChanged = SystemPadding != systemPadding;
             SystemPadding = systemPadding;
 
-            if(systemPaddingWasChanged && forceLayout)
+            if (systemPaddingWasChanged && forceLayout)
                 ForceLayout();
         }
 
