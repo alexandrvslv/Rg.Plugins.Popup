@@ -33,10 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="OpenTK" Version="3.0.1" />
-    <PackageReference Include="OpenTK.GLControl" Version="3.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.1.0.618606" />
+    <PackageReference Include="OpenTK" Version="3.1.0" />
+    <PackageReference Include="OpenTK.GLControl" Version="3.1.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.1.0.673156" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xaml" />
