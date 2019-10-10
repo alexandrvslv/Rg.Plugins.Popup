@@ -9,9 +9,6 @@
     <AssemblyName>Rg.PluginsPopup.WPF</AssemblyName> 
     <RootNamespace>Rg.PluginsPopup.WPF</RootNamespace>
     <TargetFramework>net461</TargetFramework>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
     <AssemblyVersion>1.1.2.0</AssemblyVersion>
     <FileVersion>1.1.2.0</FileVersion>
   </PropertyGroup>
@@ -35,8 +32,8 @@
   <ItemGroup>
     <PackageReference Include="OpenTK" Version="3.1.0" />
     <PackageReference Include="OpenTK.GLControl" Version="3.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.2.0.778463" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.2.0.848062" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xaml" />
