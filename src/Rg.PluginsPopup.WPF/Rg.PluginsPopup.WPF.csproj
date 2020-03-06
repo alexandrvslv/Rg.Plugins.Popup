@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B8934FC2-8E2C-4A88-B519-A5552C2F3819}</ProjectGuid>
     <OutputType>library</OutputType>
-    <AssemblyName>Rg.PluginsPopup.WPF</AssemblyName> 
+    <AssemblyName>Rg.PluginsPopup.WPF</AssemblyName>
     <RootNamespace>Rg.PluginsPopup.WPF</RootNamespace>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461</TargetFrameworks>
     <AssemblyVersion>1.1.2.0</AssemblyVersion>
     <FileVersion>1.1.2.0</FileVersion>
   </PropertyGroup>
@@ -32,8 +32,8 @@
   <ItemGroup>
     <PackageReference Include="OpenTK" Version="3.1.0" />
     <PackageReference Include="OpenTK.GLControl" Version="3.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="4.5.0.356" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Xaml" />
