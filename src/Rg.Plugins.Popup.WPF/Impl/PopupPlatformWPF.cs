@@ -41,7 +41,7 @@ namespace Rg.Plugins.Popup.WPF.Impl
 
             if (lastPopupPage != null)
             {
-                var isPrevent = lastPopupPage.IsBeingDismissed || lastPopupPage.SendBackButtonPressed();
+                var isPrevent = lastPopupPage.DisappearingTransactionTask != null || lastPopupPage.SendBackButtonPressed();
 
                 if (!isPrevent)
                 {
@@ -67,6 +67,7 @@ namespace Rg.Plugins.Popup.WPF.Impl
             renderer.Destroy();
             Cleanup(page);
             page.Parent = null;
+
             return Task.FromResult<object>(null);
         }
 

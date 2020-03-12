@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rg.Plugins.Popup.UWP", "Rg.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Rg.Plugins.Popup.WinShared", "Rg.Plugins.Popup.WinShared\Rg.Plugins.Popup.WinShared.shproj", "{32FF6384-D2DC-4033-B52D-0833A1E69D04}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rg.Plugins.Popup.WPF", "Rg.Plugins.Popup.WPF\Rg.Plugins.Popup.WPF.csproj", "{B8934FC2-8E2C-4A88-B519-A5552C2F3819}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.WPF", "Demo\Demo.WPF\Demo.WPF.csproj", "{9EC9E6F0-C045-48E0-91B4-9946CEEC0FC9}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuspec", "nuspec", "{513DF223-8613-44A0-A67E-2C05601D5A62}"
 	ProjectSection(SolutionItems) = preProject
 		..\nuspec\readme.txt = ..\nuspec\readme.txt
@@ -38,10 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C18A37DD
 	ProjectSection(SolutionItems) = preProject
 		..\appveyor.yml = ..\appveyor.yml
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rg.PluginsPopup.WPF", "Rg.PluginsPopup.WPF\Rg.PluginsPopup.WPF.csproj", "{B8934FC2-8E2C-4A88-B519-A5552C2F3819}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.WPF", "Demo\Demo.WPF\Demo.WPF.csproj", "{9EC9E6F0-C045-48E0-91B4-9946CEEC0FC9}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

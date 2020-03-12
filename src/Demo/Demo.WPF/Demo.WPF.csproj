@@ -32,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Rg.Plugins.Popup\Rg.Plugins.Popup.csproj" />
-    <ProjectReference Include="..\..\Rg.PluginsPopup.WPF\Rg.PluginsPopup.WPF.csproj" />
+    <ProjectReference Include="..\..\Rg.Plugins.Popup.WPF\Rg.Plugins.Popup.WPF.csproj" />
     <ProjectReference Include="..\Demo\Demo.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +49,6 @@
 
     <Resource Include="Assets\close_circle_button.png" />
     <Resource Include="Assets\github_octocat.png" />
-  </ItemGroup>  
+  </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

@@ -6,11 +6,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B8934FC2-8E2C-4A88-B519-A5552C2F3819}</ProjectGuid>
     <OutputType>library</OutputType>
-    <AssemblyName>Rg.PluginsPopup.WPF</AssemblyName>
-    <RootNamespace>Rg.PluginsPopup.WPF</RootNamespace>
+    <AssemblyName>Rg.Plugins.Popup.WPF</AssemblyName>
+    <AssemblyTitle>Rg.Plugins.Popup.WPF</AssemblyTitle>
+    <AssemblyCompany>rotorgames</AssemblyCompany>
+    <AssemblyProduct>Rg.Plugins.Popup</AssemblyProduct>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <AssemblyFileVersion>1.1.1.0</AssemblyFileVersion>
+    <RootNamespace>Rg.Plugins.Popup.WPF</RootNamespace>
     <TargetFrameworks>net461</TargetFrameworks>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,7 +48,9 @@
     <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
     <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
-    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
+    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
     <None Include="OpenTK.dll.config" />
   </ItemGroup>
   <ItemGroup>

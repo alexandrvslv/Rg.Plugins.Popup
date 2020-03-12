@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Animations;
+using Rg.Plugins.Popup.Enums;
 using Rg.Plugins.Popup.Interfaces.Animations;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -9,52 +10,22 @@ namespace Rg.Plugins.Popup.Pages
 {
     public class PopupPage : ContentPage
     {
+        #region Private
+
+        private const string IsAnimatingObsoleteText = 
+            nameof(IsAnimating) + 
+            " is obsolute as of v1.1.5. Please use "
+            +nameof(IsAnimationEnabled) + 
+            " instead. See more info: "
+            +Config.MigrationV1_0_xToV1_1_xUrl;
+
+        #endregion
+
         #region Internal Properties
 
-        private bool isBeingDismissed;
-        private bool isBeingAppear;
+        internal Task AppearingTransactionTask { get; set; }
 
-        public bool IsBeingAppear
-        {
-            get => isBeingAppear;
-            set
-            {
-                if (isBeingAppear != value)
-                {
-                    isBeingAppear = value;
-                    if (value)
-                    {
-                        OnAppear();
-                    }
-                }
-            }
-        }        
-
-        public bool IsBeingDismissed
-        {
-            get => isBeingDismissed;
-            set
-            {
-                if (isBeingDismissed != value)
-                {
-                    isBeingDismissed = value;
-                    if (value)
-                    {
-                        OnDismissed();
-                    }
-                }
-            }
-        }
-
-        protected virtual void OnAppear()
-        {
-            Appear?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnDismissed()
-        {
-            Dismissed?.Invoke(this, EventArgs.Empty);
-        }
+        internal Task DisappearingTransactionTask { get; set; }
 
         #endregion
 
@@ -62,13 +33,19 @@ namespace Rg.Plugins.Popup.Pages
 
         public event EventHandler BackgroundClicked;
 
-        public event EventHandler Dismissed;
-
-        public event EventHandler Appear;
-
         #endregion
 
         #region Bindable Properties
+
+        [Obsolete(IsAnimatingObsoleteText)]
+        public static readonly BindableProperty IsAnimatingProperty = BindableProperty.Create(nameof(IsAnimating), typeof(bool), typeof(PopupPage), true);
+
+        [Obsolete(IsAnimatingObsoleteText)]
+        public bool IsAnimating
+        {
+            get { return (bool)GetValue(IsAnimatingProperty); }
+            set { SetValue(IsAnimatingProperty, value); }
+        }
 
         public static readonly BindableProperty IsAnimationEnabledProperty = BindableProperty.Create(nameof(IsAnimationEnabled), typeof(bool), typeof(PopupPage), true);
 
@@ -102,6 +79,14 @@ namespace Rg.Plugins.Popup.Pages
             private set { SetValue(SystemPaddingProperty, value); }
         }
 
+        public static readonly BindableProperty SystemPaddingSidesProperty = BindableProperty.Create(nameof(SystemPaddingSides), typeof(PaddingSide), typeof(PopupPage), PaddingSide.All);
+
+        public PaddingSide SystemPaddingSides
+        {
+            get { return (PaddingSide)GetValue(SystemPaddingSidesProperty); }
+            set { SetValue(SystemPaddingSidesProperty, value); }
+        }
+
         public static readonly BindableProperty CloseWhenBackgroundIsClickedProperty = BindableProperty.Create(nameof(CloseWhenBackgroundIsClicked), typeof(bool), typeof(PopupPage), true);
 
         public bool CloseWhenBackgroundIsClicked
@@ -116,6 +101,22 @@ namespace Rg.Plugins.Popup.Pages
         {
             get { return (bool)GetValue(BackgroundInputTransparentProperty); }
             set { SetValue(BackgroundInputTransparentProperty, value); }
+        }
+
+        public static readonly BindableProperty HasKeyboardOffsetProperty = BindableProperty.Create(nameof(HasKeyboardOffset), typeof(bool), typeof(PopupPage), true);
+
+        public bool HasKeyboardOffset
+        {
+            get { return (bool)GetValue(HasKeyboardOffsetProperty); }
+            set { SetValue(HasKeyboardOffsetProperty, value); }
+        }
+
+        public static readonly BindableProperty KeyboardOffsetProperty = BindableProperty.Create(nameof(KeyboardOffset), typeof(double), typeof(PopupPage), 0d, BindingMode.OneWayToSource);
+
+        public double KeyboardOffset
+        {
+            get { return (double)GetValue(KeyboardOffsetProperty); }
+            private set { SetValue(KeyboardOffsetProperty, value); }
         }
 
         #endregion
@@ -135,7 +136,15 @@ namespace Rg.Plugins.Popup.Pages
             switch (propertyName)
             {
                 case nameof(HasSystemPadding):
+                case nameof(HasKeyboardOffset):
+                case nameof(SystemPaddingSides):
                     ForceLayout();
+                    break;
+                case nameof(IsAnimating):
+                    IsAnimationEnabled = IsAnimating;
+                    break;
+                case nameof(IsAnimationEnabled):
+                    IsAnimating = IsAnimationEnabled;
                     break;
             }
         }
@@ -151,18 +160,37 @@ namespace Rg.Plugins.Popup.Pages
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            if (!HasSystemPadding)
+            if(HasSystemPadding)
             {
-                base.LayoutChildren(x, y, width, height);
-                return;
+                var systemPadding = SystemPadding;
+                var systemPaddingSide = SystemPaddingSides;
+                var left = 0d;
+                var top = 0d;
+                var right = 0d;
+                var bottom = 0d;
+
+                if (systemPaddingSide.HasFlag(PaddingSide.Left))
+                    left = systemPadding.Left;
+                if (systemPaddingSide.HasFlag(PaddingSide.Top))
+                    top = systemPadding.Top;
+                if (systemPaddingSide.HasFlag(PaddingSide.Right))
+                    right = systemPadding.Right;
+                if (systemPaddingSide.HasFlag(PaddingSide.Bottom))
+                    bottom = systemPadding.Bottom;
+
+                x += left;
+                y += top;
+                width -= left + right;
+
+                if (HasKeyboardOffset)
+                    height -= top + Math.Max(bottom, KeyboardOffset);
+                else
+                    height -= top + bottom;
             }
-
-            var systemPadding = SystemPadding;
-
-            x += systemPadding.Left;
-            y += systemPadding.Top;
-            width -= systemPadding.Left + systemPadding.Right;
-            height -= systemPadding.Top + systemPadding.Bottom;
+            else if(HasKeyboardOffset)
+            {
+                height -= KeyboardOffset;
+            }
 
             base.LayoutChildren(x, y, width, height);
         }
@@ -260,7 +288,7 @@ namespace Rg.Plugins.Popup.Pages
 
         #region Internal Methods
 
-        public async void SendBackgroundClick()
+        internal async void SendBackgroundClick()
         {
             BackgroundClicked?.Invoke(this, EventArgs.Empty);
 
@@ -269,15 +297,6 @@ namespace Rg.Plugins.Popup.Pages
             {
                 await PopupNavigation.Instance.RemovePageAsync(this);
             }
-        }
-
-        public void SetSystemPadding(Thickness systemPadding, bool forceLayout = true)
-        {
-            var systemPaddingWasChanged = SystemPadding != systemPadding;
-            SystemPadding = systemPadding;
-
-            if (systemPaddingWasChanged && forceLayout)
-                ForceLayout();
         }
 
         #endregion
