@@ -42,7 +42,7 @@ namespace Rg.Plugins.Popup.Windows.Renderers
                 System.Windows.Controls.Grid.SetColumn(Control, 0);
                 System.Windows.Controls.Grid.SetColumnSpan(Control, grid.ColumnDefinitions.Count + 1);
                 System.Windows.Controls.Grid.SetRow(Control, 0);
-                System.Windows.Controls.Grid.SetRowSpan(Control, grid.RowDefinitions.Count+1);
+                System.Windows.Controls.Grid.SetRowSpan(Control, grid.RowDefinitions.Count + 1);
 
                 grid.Children.Add(Control);
 
@@ -74,7 +74,8 @@ namespace Rg.Plugins.Popup.Windows.Renderers
 
         private void OnLayoutUpdated(object sender, EventArgs e)
         {
-            if (CurrentElement.Width != grid.ActualWidth)
+            if (CurrentElement.Width != grid.ActualWidth
+                || CurrentElement.Height != grid.ActualHeight)
             {
                 CurrentElement.Layout(new Rectangle(0, 0, grid.ActualWidth, grid.ActualHeight));
             }
