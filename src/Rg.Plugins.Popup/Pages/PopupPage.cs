@@ -12,12 +12,12 @@ namespace Rg.Plugins.Popup.Pages
     {
         #region Private
 
-        private const string IsAnimatingObsoleteText = 
-            nameof(IsAnimating) + 
+        private const string IsAnimatingObsoleteText =
+            nameof(IsAnimating) +
             " is obsolute as of v1.1.5. Please use "
-            +nameof(IsAnimationEnabled) + 
+            + nameof(IsAnimationEnabled) +
             " instead. See more info: "
-            +Config.MigrationV1_0_xToV1_1_xUrl;
+            + Config.MigrationV1_0_xToV1_1_xUrl;
 
         #endregion
 
@@ -160,7 +160,7 @@ namespace Rg.Plugins.Popup.Pages
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            if(HasSystemPadding)
+            if (HasSystemPadding)
             {
                 var systemPadding = SystemPadding;
                 var systemPaddingSide = SystemPaddingSides;
@@ -187,7 +187,7 @@ namespace Rg.Plugins.Popup.Pages
                 else
                     height -= top + bottom;
             }
-            else if(HasKeyboardOffset)
+            else if (HasKeyboardOffset)
             {
                 height -= KeyboardOffset;
             }
@@ -218,6 +218,8 @@ namespace Rg.Plugins.Popup.Pages
 
             if (IsAnimationEnabled && Animation != null)
                 await Animation.Appearing(Content, this);
+            else
+                IsVisible = true;
 
             OnAppearingAnimationEnd();
             await OnAppearingAnimationEndAsync();
