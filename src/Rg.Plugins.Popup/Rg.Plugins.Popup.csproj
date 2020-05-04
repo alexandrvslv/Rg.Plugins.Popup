@@ -5,7 +5,7 @@
         <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
+      <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="readme.txt" />
