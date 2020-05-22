@@ -26,7 +26,7 @@ namespace Rg.Plugins.Popup.Windows.Renderers
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            if (e.PropertyName == Page.IsVisibleProperty.PropertyName)
+            if (string.Equals(e.PropertyName, Page.IsVisibleProperty.PropertyName, StringComparison.Ordinal))
             {
                 Control.Visibility = CurrentElement.IsVisible ? Visibility.Visible : Visibility.Collapsed;
             }
