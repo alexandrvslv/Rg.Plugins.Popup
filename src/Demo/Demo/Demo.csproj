@@ -4,7 +4,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
+        <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Rg.Plugins.Popup\Rg.Plugins.Popup.csproj" />
