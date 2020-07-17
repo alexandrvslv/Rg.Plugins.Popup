@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Platforms>AnyCPU</Platforms>
+        <Platforms>AnyCPU;x64;x86</Platforms>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="Xamarin.Forms" Version="4.7.0.1142" />
