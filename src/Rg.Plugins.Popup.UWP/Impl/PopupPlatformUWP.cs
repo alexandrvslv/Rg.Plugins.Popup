@@ -9,13 +9,8 @@ using Rg.Plugins.Popup.WinPhone.Impl;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using XPlatform = Xamarin.Forms.Platform.UWP.Platform;
-#if WINDOWS_UWP
 using Xamarin.Forms.Platform.UWP;
 using Windows.UI.Core;
-#elif WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-using Xamarin.Forms.Platform.WinRT;
-#endif
 
 [assembly: Dependency(typeof(PopupPlatformWinPhone))]
 namespace Rg.Plugins.Popup.WinPhone.Impl
@@ -37,18 +32,10 @@ namespace Rg.Plugins.Popup.WinPhone.Impl
         [Preserve]
         public PopupPlatformWinPhone()
         {
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += OnBackPressed;
-#elif WINDOWS_UWP
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
-#endif
         }
 
-#if WINDOWS_UWP
         private async void OnBackRequested(object sender, BackRequestedEventArgs e)
-#elif WINDOWS_PHONE_APP
-        private async void OnBackPressed(object sender, BackPressedEventArgs e)
-#endif
         {
             var lastPopupPage = PopupNavigationInstance.PopupStack.LastOrDefault();
 

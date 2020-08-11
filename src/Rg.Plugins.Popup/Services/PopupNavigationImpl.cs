@@ -13,7 +13,7 @@ namespace Rg.Plugins.Popup.Services
     {
         readonly object _locker = new object();
 
-        readonly List<PopupPage> _popupStack = new List<PopupPage>();
+        readonly HashSet<PopupPage> _popupStack = new HashSet<PopupPage>();
 
         public event EventHandler<PopupNavigationEventArgs> Pushing;
 
@@ -39,7 +39,7 @@ namespace Rg.Plugins.Popup.Services
             }
         }
 
-        public IReadOnlyList<PopupPage> PopupStack => _popupStack;
+        public IReadOnlyCollection<PopupPage> PopupStack => _popupStack;
 
         public PopupNavigationImpl()
         {
@@ -57,7 +57,10 @@ namespace Rg.Plugins.Popup.Services
             lock (_locker)
             {
                 if (_popupStack.Contains(page))
-                    throw new InvalidOperationException("The page has been pushed already. Pop or remove the page before to push it again");
+                {
+                    return Task.CompletedTask;
+                    //throw new InvalidOperationException("The page has been pushed already. Pop or remove the page before to push it again");
+                }
 
                 Pushing?.Invoke(this, new PopupNavigationEventArgs(page, animate));
 
@@ -183,8 +186,7 @@ namespace Rg.Plugins.Popup.Services
 
         internal void RemovePopupFromStack(PopupPage page)
         {
-            if (_popupStack.Contains(page))
-                _popupStack.Remove(page);
+            _popupStack.Remove(page);
         }
 
         #region Animation

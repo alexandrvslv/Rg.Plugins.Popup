@@ -16,7 +16,7 @@ namespace Rg.Plugins.Popup.Contracts
 
         event EventHandler<PopupNavigationEventArgs> Popped;
 
-        IReadOnlyList<PopupPage> PopupStack { get; }
+        IReadOnlyCollection<PopupPage> PopupStack { get; }
 
         Task PushAsync(PopupPage page, bool animate = true);
 

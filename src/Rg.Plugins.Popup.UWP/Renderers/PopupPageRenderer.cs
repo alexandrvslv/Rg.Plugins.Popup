@@ -11,14 +11,9 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Windows.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Size = Windows.Foundation.Size;
 using Windows.UI.Xaml.Media;
-using System.Collections.Generic;
-#if WINDOWS_UWP
 using Xamarin.Forms.Platform.UWP;
-#elif WINDOWS_PHONE_APP
-using Xamarin.Forms.Platform.WinRT;
-#endif
+using Size = Windows.Foundation.Size;
 using WinPopup = Windows.UI.Xaml.Controls.Primitives.Popup;
 
 [assembly: ExportRenderer(typeof(PopupPage), typeof(PopupPageRenderer))]
@@ -69,7 +64,7 @@ namespace Rg.Plugins.Popup.Windows.Renderers
                 CurrentElement.Layout(new Rectangle(0, 0, grid.ActualWidth, grid.ActualHeight));
             }
         }
-       
+
 
         internal void Destroy()
         {
@@ -84,7 +79,7 @@ namespace Rg.Plugins.Popup.Windows.Renderers
             }
         }
 
-       private void OnBackgroundClick(object sender, PointerRoutedEventArgs e)
+        private void OnBackgroundClick(object sender, PointerRoutedEventArgs e)
         {
             if (e.OriginalSource == this)
             {

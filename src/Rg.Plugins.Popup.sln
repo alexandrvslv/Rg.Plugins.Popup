@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.UWP", "Demo\Demo.UWP\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rg.Plugins.Popup.UWP", "Rg.Plugins.Popup.UWP\Rg.Plugins.Popup.UWP.csproj", "{2B1508FE-0298-4740-B5D3-6B2BC0F0E08D}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Rg.Plugins.Popup.WinShared", "Rg.Plugins.Popup.WinShared\Rg.Plugins.Popup.WinShared.shproj", "{32FF6384-D2DC-4033-B52D-0833A1E69D04}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rg.Plugins.Popup.WPF", "Rg.Plugins.Popup.WPF\Rg.Plugins.Popup.WPF.csproj", "{B8934FC2-8E2C-4A88-B519-A5552C2F3819}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.WPF", "Demo\Demo.WPF\Demo.WPF.csproj", "{9EC9E6F0-C045-48E0-91B4-9946CEEC0FC9}"
@@ -44,10 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C18A37DD
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Rg.Plugins.Popup.WinShared\Rg.Plugins.Popup.WinShared.projitems*{2b1508fe-0298-4740-b5d3-6b2bc0f0e08d}*SharedItemsImports = 4
-		Rg.Plugins.Popup.WinShared\Rg.Plugins.Popup.WinShared.projitems*{32ff6384-d2dc-4033-b52d-0833a1e69d04}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|ARM = Ad-Hoc|ARM
