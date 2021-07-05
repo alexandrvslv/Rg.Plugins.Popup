@@ -16,10 +16,10 @@ namespace Rg.Plugins.Popup.Animations.Base
         [TypeConverter(typeof (UintTypeConverter))]
         public uint DurationOut { get; set; } = DefaultDuration;
 
-        [TypeConverter(typeof(EasingTypeConverter))]
+        [TypeConverter(typeof(Converters.TypeConverters.EasingTypeConverter))]
         public Easing EasingIn { get; set; } = Easing.Linear;
 
-        [TypeConverter(typeof(EasingTypeConverter))]
+        [TypeConverter(typeof(Converters.TypeConverters.EasingTypeConverter))]
         public Easing EasingOut { get; set; } = Easing.Linear;
 
         public abstract void Preparing(View content, PopupPage page);
