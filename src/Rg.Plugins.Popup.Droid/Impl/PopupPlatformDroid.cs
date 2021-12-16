@@ -86,7 +86,7 @@ namespace Rg.Plugins.Popup.Droid.Impl
             {
                 animationScale = Settings.System.GetFloat(
                     context.ContentResolver,
-                    Settings.System.AnimatorDurationScale,
+                    Settings.Global.AnimatorDurationScale,
                     1);
             }
 
