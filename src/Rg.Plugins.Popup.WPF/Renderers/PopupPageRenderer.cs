@@ -48,9 +48,53 @@ namespace Rg.Plugins.Popup.Windows.Renderers
 
                 //grid.UpdateLayout();
                 //CurrentElement.ForceLayout();
+                Control.MouseMove += OnMouseMove;
                 Control.LayoutUpdated += OnLayoutUpdated;
                 Control.MouseDown += OnBackgroundClick;
             }
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (CurrentElement.IsResizeble)
+                Resizeble(e);
+        }
+
+        private void Resizeble(MouseEventArgs e)
+        {
+            if (CurrentElement.WidthMin == 0)
+                CurrentElement.WidthMin = CurrentElement.Content.Width;
+            var mousePosition = e.GetPosition(Control);
+            if (Control.Cursor == Cursors.SizeWE && e.LeftButton == MouseButtonState.Pressed)
+                CurrentElement.Content.WidthRequest = GetWidth(mousePosition);
+            else
+                OnHoverBorder(mousePosition.X, mousePosition.Y);
+        }
+
+        private double GetWidth(System.Windows.Point mousePosition)
+        {
+            double width = 0;
+            if (mousePosition.X > (CurrentElement.Content.X + CurrentElement.Content.Width / 2))
+                width = CurrentElement.Content.Width + (mousePosition.X - (CurrentElement.Content.X + CurrentElement.Content.Width));
+            else if (mousePosition.X < (CurrentElement.Content.X + CurrentElement.Content.Width / 2))
+                width = CurrentElement.Content.Width + CurrentElement.Content.X - mousePosition.X;
+            if (CurrentElement.WidthMin > width)
+                return CurrentElement.WidthMin;
+            return width;
+        }
+
+        private void OnHoverBorder(double x, double y)
+        {
+            var view = CurrentElement.Content;
+            if (view.X < x && view.Y < y && view.X + view.Width > x && view.Y + view.Height > y)
+            {
+                if (Math.Abs(view.X - x) < 3 || Math.Abs((view.X + view.Width) - x) < 3)
+                    Control.Cursor = Cursors.SizeWE;
+                else
+                    Control.Cursor = Cursors.Arrow;
+            }
+            else
+                Control.Cursor = Cursors.Arrow;
         }
 
         private void OnGridSizeChanged(object sender, SizeChangedEventArgs e)

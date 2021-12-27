@@ -16,6 +16,8 @@ namespace Rg.Plugins.Popup.Pages
 
         internal Task DisappearingTransactionTask { get; set; }
 
+        internal double WidthMin { get; set; }
+
         #endregion
 
         #region Events
@@ -27,6 +29,7 @@ namespace Rg.Plugins.Popup.Pages
         #region Bindable Properties
 
         public static readonly BindableProperty IsAnimationEnabledProperty = BindableProperty.Create(nameof(IsAnimationEnabled), typeof(bool), typeof(PopupPage), true);
+        public static readonly BindableProperty IsResizebleProperty = BindableProperty.Create(nameof(IsResizeble), typeof(bool), typeof(PopupPage), false);
 
         public bool IsAnimationEnabled
         {
@@ -96,6 +99,12 @@ namespace Rg.Plugins.Popup.Pages
         {
             get { return (double)GetValue(KeyboardOffsetProperty); }
             private set { SetValue(KeyboardOffsetProperty, value); }
+        }
+
+        public bool IsResizeble
+        {
+            get { return (bool)GetValue(IsResizebleProperty); }
+            set { SetValue(IsResizebleProperty, value); }
         }
 
         #endregion
