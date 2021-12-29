@@ -29,7 +29,7 @@ namespace Rg.Plugins.Popup.Pages
         #region Bindable Properties
 
         public static readonly BindableProperty IsAnimationEnabledProperty = BindableProperty.Create(nameof(IsAnimationEnabled), typeof(bool), typeof(PopupPage), true);
-        public static readonly BindableProperty IsResizebleProperty = BindableProperty.Create(nameof(IsResizeble), typeof(bool), typeof(PopupPage), false);
+        public static readonly BindableProperty IsResizebleProperty = BindableProperty.Create(nameof(IsResizeble), typeof(bool), typeof(PopupPage), true);
 
         public bool IsAnimationEnabled
         {
