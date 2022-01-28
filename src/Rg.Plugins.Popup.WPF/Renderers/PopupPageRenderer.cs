@@ -136,7 +136,7 @@ namespace Rg.Plugins.Popup.Windows.Renderers
 
         private System.Windows.Controls.Grid GetTopGridFromWindow()
         {
-            return GetChildGrid(System.Windows.Application.Current.MainWindow);
+            return GetChildGrid(System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive) ?? System.Windows.Application.Current.MainWindow);
         }
 
         private System.Windows.Controls.Grid GetChildGrid(DependencyObject content)
