@@ -111,9 +111,6 @@ namespace Rg.Plugins.Popup.Services
             {
                 animate = CanBeAnimated(animate);
 
-                if (!PopupStack.Any())
-                    throw new IndexOutOfRangeException("No Page in PopupStack");
-
                 var popupTasks = PopupStack.ToList().Select(page => RemovePageAsync(page, animate));
 
                 return Task.WhenAll(popupTasks);
