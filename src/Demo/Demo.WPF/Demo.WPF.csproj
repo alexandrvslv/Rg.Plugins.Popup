@@ -4,31 +4,15 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Demo.WPF</RootNamespace>
     <AssemblyName>Demo.WPF</AssemblyName>
-    <TargetFramework>net462</TargetFramework>
+    <UseWpf>true</UseWpf>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <AssemblyVersion>1.1.2.0</AssemblyVersion>
     <FileVersion>1.1.2.0</FileVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <ApplicationManifest />
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="3.1.3" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="5.0.0.2545" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="System.Xaml" />
+    <!--<PackageReference Include="Microsoft.NETCore.Platforms" Version="7.0.2" />-->
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="5.0.0.2578" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Rg.Plugins.Popup\Rg.Plugins.Popup.csproj" />
@@ -36,19 +20,10 @@
     <ProjectReference Include="..\Demo\Demo.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
-    <Compile Update="Properties\Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
-    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
-    <Compile Update="Properties\Settings.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Settings.settings" />
-
-    <ApplicationDefinition Include="App.xaml" Generator="MSBuild:Compile" />
-    <Page Include="**\*.xaml" Exclude="App.xaml" SubType="Designer" Generator="MSBuild:Compile" />
-    <Compile Update="**\*.xaml.cs" SubType="Designer" DependentUpon="%(Filename)" />
-
     <EmbeddedResource Remove="**\*.xaml" />
-
+  </ItemGroup>
+  <ItemGroup>   
     <Resource Include="Assets\close_circle_button.png" />
     <Resource Include="Assets\github_octocat.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

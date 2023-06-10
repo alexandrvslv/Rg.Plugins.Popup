@@ -6,15 +6,15 @@ using Debug = System.Diagnostics.Debug;
 namespace Demo.Droid
 {
     [Activity(Label = "Demo", Icon = "@drawable/icon", /*Theme = "@style/Theme.AppCompat.Light.NoActionBar",*/ MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             Rg.Plugins.Popup.Popup.Init(this, bundle);
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            Xamarin.Forms.Forms.Init(this, bundle);
+            base.LoadApplication(new App());
         }
 
         public override void OnBackPressed()
