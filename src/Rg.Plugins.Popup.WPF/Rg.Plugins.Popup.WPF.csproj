@@ -13,8 +13,8 @@
     <TargetFrameworks>net6.0-windows</TargetFrameworks>
   </PropertyGroup>  
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
-    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="5.0.0.2578" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2612" />
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="5.0.0.2612" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rg.Plugins.Popup\Rg.Plugins.Popup.csproj">
